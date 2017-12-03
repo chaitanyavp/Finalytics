@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.defaults import *
+ 
+admin.autodiscover()
+ 
+urlpatterns = patterns('',
+    (r'^admin/(.*)', admin.site.root), #Lets us access the admin page
+    (r'^$', 'studentsave.core.views.index'), #Our index page, it maps to / . Once the page is called it will look in /todo/core/views.py for a function called index
+     
+)
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-]
+
